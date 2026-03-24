@@ -1,14 +1,21 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { createASCIIShift } from '../lib/asciiShift';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Vision() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const visionTextRef = useRef<HTMLHeadingElement>(null);
+  const asciiRef = useRef<ReturnType<typeof createASCIIShift> | null>(null);
 
   useEffect(() => {
+    // Initialize ASCII wave hover interaction
+    if (visionTextRef.current) {
+      asciiRef.current = createASCIIShift(visionTextRef.current, { dur: 1000, spread: 1 });
+    }
+
     const ctx = gsap.context(() => {
       gsap.from(visionTextRef.current, {
         scrollTrigger: {
@@ -22,7 +29,12 @@ export default function Vision() {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      if (asciiRef.current) {
+        asciiRef.current.destroy();
+      }
+    };
   }, []);
 
   return (
