@@ -53,7 +53,7 @@ export default function Hero() {
       <div className="flex flex-col w-full">
         <h1 
           ref={textRef}
-          className="glitch-text text-[56px] md:text-[96px] lg:text-[140px] font-black leading-[0.9] tracking-[-0.02em] md:tracking-[-0.03em] uppercase w-fit"
+          className="glitch-text font-playfair text-[56px] md:text-[96px] lg:text-[140px] font-black leading-[0.9] tracking-[-0.02em] md:tracking-[-0.03em] uppercase w-fit"
           data-text="Damian Hill"
         >
           Damian Hill
