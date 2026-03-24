@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 export default function Hero() {
@@ -6,13 +6,6 @@ export default function Hero() {
   const textRef = useRef<HTMLHeadingElement>(null);
   const subTextRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const x = (e.clientX / window.innerWidth) * 2 - 1;
-    const y = (e.clientY / window.innerHeight) * 2 - 1;
-    setMousePos({ x, y });
-  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -46,12 +39,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section 
-      ref={heroRef} 
-      className="w-full flex flex-col pt-20 pb-10 px-6 md:px-10 lg:px-20 gap-8 lg:gap-16 relative"
-      onMouseMove={handleMouseMove}
-      style={{ '--mouse-x': mousePos.x, '--mouse-y': mousePos.y } as React.CSSProperties}
-    >
+    <section ref={heroRef} className="w-full flex flex-col pt-20 pb-10 px-6 md:px-10 lg:px-20 gap-8 lg:gap-16">
       <div className="flex flex-col w-full">
         <h1 
           ref={textRef}
