@@ -78,9 +78,9 @@ export default function Hero() {
             className="w-full h-full object-cover rounded-none"
           />
           <img 
-            src="/hero-glow.png" 
+            src="/hero.png" 
             alt="Gleaming electric blue neon variant of the architecture" 
-            className="absolute inset-0 w-full h-full object-cover rounded-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            className="absolute inset-0 w-full h-full object-cover rounded-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 saturate-[8] brightness-[1.8] contrast-[1.2]"
           />
         </div>
       </div>
