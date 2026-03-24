@@ -18,6 +18,7 @@ export default function Hero() {
         delay: 0.2
       });
 
+      // Fade text in
       gsap.from(subTextRef.current, {
         y: 40,
         opacity: 0,
@@ -26,13 +27,22 @@ export default function Hero() {
         delay: 0.6
       });
 
-      gsap.from(imgRef.current, {
-        scale: 1.05,
-        opacity: 0,
-        duration: 1.5,
-        ease: 'expo.out',
-        delay: 0.8
-      });
+      // Split the image animation into entrance fade and infinite zoom loop
+      gsap.fromTo(imgRef.current, 
+        { opacity: 0 },
+        { opacity: 1, duration: 2, ease: 'power2.out', delay: 0.8 }
+      );
+
+      gsap.fromTo(imgRef.current,
+        { scale: 1.02 },
+        {
+          scale: 1.08,
+          duration: 12,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true
+        }
+      );
     }, heroRef);
 
     return () => ctx.revert();
