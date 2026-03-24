@@ -5,7 +5,7 @@ export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
   const subTextRef = useRef<HTMLDivElement>(null);
-  const imgRef = useRef<HTMLImageElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -71,12 +71,18 @@ export default function Hero() {
       </div>
 
       <div className="w-full h-[300px] md:h-[400px] lg:h-[800px] overflow-hidden mt-8">
-        <img 
-          ref={imgRef}
-          src="/hero.png" 
-          alt="Abstract monochromatic architectural forms with a subtle electric blue streak" 
-          className="w-full h-full object-cover rounded-none"
-        />
+        <div ref={imgRef} className="relative w-full h-full group cursor-crosshair">
+          <img 
+            src="/hero.png" 
+            alt="Abstract monochromatic architectural forms with a subtle electric blue streak" 
+            className="w-full h-full object-cover rounded-none"
+          />
+          <img 
+            src="/hero-glow.png" 
+            alt="Gleaming electric blue neon variant of the architecture" 
+            className="absolute inset-0 w-full h-full object-cover rounded-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          />
+        </div>
       </div>
     </section>
   );
