@@ -37,8 +37,20 @@ export default function Vision() {
     };
   }, []);
 
+  const handlePointerMove = (e: React.PointerEvent<HTMLElement>) => {
+    const el = e.currentTarget;
+    const { clientX: x, clientY: y } = e;
+    const { top: t, left: l, width: w, height: h } = el.getBoundingClientRect();
+    el.style.setProperty('--posX', `${x - l - w / 2}`);
+    el.style.setProperty('--posY', `${y - t - h / 2}`);
+  };
+
   return (
-    <section ref={sectionRef} className="w-full flex flex-col py-20 px-6 md:px-10 lg:px-20 gap-8 lg:gap-16">
+    <section 
+      ref={sectionRef} 
+      className="w-full flex flex-col py-20 px-6 md:px-10 lg:px-20 gap-8 lg:gap-16 bg-interactive"
+      onPointerMove={handlePointerMove}
+    >
       <h2 className="text-[var(--text-secondary)] font-bold text-sm md:text-lg lg:text-2xl tracking-[2px] lg:tracking-[4px] uppercase">
         The Vision
       </h2>

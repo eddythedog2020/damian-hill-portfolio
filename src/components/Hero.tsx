@@ -1,10 +1,13 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { createASCIIShift } from '../lib/asciiShift';
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
   const subTextRef = useRef<HTMLDivElement>(null);
+  const paragraphRef = useRef<HTMLParagraphElement>(null);
+  const asciiRef = useRef<ReturnType<typeof createASCIIShift> | null>(null);
   const imgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,7 +48,16 @@ export default function Hero() {
       );
     }, heroRef);
 
-    return () => ctx.revert();
+    if (paragraphRef.current) {
+      asciiRef.current = createASCIIShift(paragraphRef.current, { dur: 1000, spread: 1 });
+    }
+
+    return () => {
+      ctx.revert();
+      if (asciiRef.current) {
+        asciiRef.current.destroy();
+      }
+    };
   }, []);
 
   return (
@@ -60,7 +72,10 @@ export default function Hero() {
         </h1>
         
         <div ref={subTextRef} className="flex flex-col gap-4 mt-6 lg:mt-10">
-          <p className="text-[var(--text-secondary)] font-medium text-sm md:text-base lg:text-xl tracking-[1px] lg:tracking-[2px] leading-relaxed max-w-lg uppercase">
+          <p 
+            ref={paragraphRef}
+            className="as text-[var(--text-secondary)] font-medium text-sm md:text-base lg:text-xl tracking-[1px] lg:tracking-[2px] leading-relaxed max-w-lg uppercase"
+          >
             Imagination out of the box.<br/>
             Creative Director & Designer.
           </p>
