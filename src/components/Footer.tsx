@@ -8,7 +8,7 @@ export default function Footer() {
       </p>
       
       <a 
-        href="mailto:hello@damianhill.com"
+        href="mailto:hello@damianhill.design"
         className="text-[var(--accent-blue)] text-[10px] md:text-xs lg:text-sm font-bold tracking-[1px] lg:tracking-[2px] uppercase hover:opacity-80 transition-opacity"
       >
         HELLO@DAMIANHILL.COM
